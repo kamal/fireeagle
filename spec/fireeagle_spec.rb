@@ -185,11 +185,11 @@ describe "FireEagle" do
     end
 
     it "should return an array of Users" do
-      @client.recent(2, 1, 'yesterday').should have(2).users
+      @client.recent('yesterday', 3, 1).should have(3).users
     end
 
-    it "should return an array of Locations for each" do
-      @client.recent(2, 1, 'yesterday').first.should have(5).locations
+    it "should have an 'located_at' timestamp for each user" do
+      @client.recent('yesterday', 3, 1).first.located_at.should == Time.parse('2008-07-31T22:31:37+12:00')
     end
   end
 
